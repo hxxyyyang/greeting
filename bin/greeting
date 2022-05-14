@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.dirname(__FILE__) + "/../lib"
+
+require "optparse"
+require "greeting"
+
+opts = {
+  name: "World"
+}
+
+OptionParser.new do |o|
+  o.banner = "USAGE: #{$PROGRAM_NAME} [name]"
+  
+  o.on("--name [NAME]") do |name|
+    opts[:name] = name
+  end
+end.parse!
+
+Greeting::say_hello(opts[:name])
